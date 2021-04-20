@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Provider } from "react-redux";
+import DoughnutChart from "./components/Dougnhut";
+import { store } from "./store/store";
+import Input from "./components/Input";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Chart from "./components/Chart";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Provider store={store}>
+          <Route exact path='/' component={Input}></Route>
+          {/* <DoughnutChart></DoughnutChart> */}
+          <Route exact path='/chart' component={Chart}></Route>
+        </Provider>
+      </Router>
+    </>
   );
 }
 
