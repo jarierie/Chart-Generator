@@ -2,9 +2,9 @@ const initialState = {
   data: [
     {
       labels: [],
-      datasets: [],
     },
   ],
+  dataSets: [],
   options: {
     title: {
       display: true,
@@ -28,6 +28,13 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         data: action.payload,
       };
+    //if multiple datasets, dataSets: [...dataSets, action.payload]
+    case "PUSH_DATA_STRING":
+      return {
+        ...state,
+        dataSets: [action.payload],
+      };
+
     default:
       return state;
   }

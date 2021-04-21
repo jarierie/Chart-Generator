@@ -1,9 +1,13 @@
 import { Bar, Doughnut } from "react-chartjs-2";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const Chart = () => {
-  const state = {
+  const [state, setState] = useState({
+    data: null,
+    dataSets: null,
+  });
+  const nice = {
     datasets: [
       {
         label: "Rainfall",
@@ -17,8 +21,12 @@ const Chart = () => {
   };
   const data = useSelector((state) => state);
   useEffect(() => {
-    console.log(data.data);
-  });
+    setState({
+      labels: data.data,
+      datasets: data.dataSets,
+    });
+    console.log(state);
+  }, []);
 
   return (
     <>

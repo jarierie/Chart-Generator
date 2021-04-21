@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addActionCreator } from "../actions/addActionCreator";
 import { Link } from "react-router-dom";
+import { pushDataActionCreator } from "../actions/pushDataActionCreator";
 
 const Container = styled.div`
   width: 100%;
@@ -31,34 +32,28 @@ const Input = () => {
   const getData = useSelector((state) => state);
   const [labelString, setLabel] = useState([]);
 
-  const [datasets, setData] = useState([
-    {
-      label: "",
-      backgroundColor: "",
-      borderColor: "",
-      borderWidth: 2,
-      data: [],
-    },
-  ]);
+  const [datasets, setData] = useState([]);
 
   const addDispatch = useDispatch();
+  const pushDispatch = useDispatch();
 
   const handleLabelChange = (e) => {
     setLabel(e.target.value);
   };
   const handleDataSetChange = (e) => {
-    setData([{ ...datasets, [e.target.name]: e.target.value }]);
+    setData({ ...datasets, [e.target.name]: e.target.value });
   };
 
   const submit = (e) => {
     e.preventDefault();
     const labels = labelString.split(" ");
-    addDispatch(addActionCreator({ labels, datasets }));
+    addDispatch(addActionCreator(labels));
+
+    pushDispatch(pushDataActionCreator(datasets));
   };
 
   const handleDataArrayChange = (e) => {
     const convertBorderWidthToNumber = parseInt(datasets.borderWidth);
-    const newArray = [{ ...datasets, borderWidth: convertBorderWidthToNumber }];
     const dataArray = e.target.value.split(" ");
     const convertedDataArray = dataArray.map((data) => parseInt(data));
     setData({
@@ -67,6 +62,9 @@ const Input = () => {
       borderWidth: convertBorderWidthToNumber,
     });
   };
+  useEffect(() => {
+    console.log(datasets);
+  }, [datasets]);
 
   return (
     <>
@@ -78,7 +76,7 @@ const Input = () => {
             <input
               value={labelString}
               onChange={handleLabelChange}
-              name='label'
+              name='labels'
               placeholder='put some data'
             ></input>
           </label>
