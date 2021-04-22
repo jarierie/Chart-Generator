@@ -5,19 +5,28 @@ const initialState = {
     },
   ],
   dataSets: [],
-  options: {
-    title: {
-      display: true,
-      text: "default Title",
-      fontSize: 100,
+
+  title: {
+    display: true,
+    text: "default Title",
+    fontSize: 100,
+    fontColor: "#0d0d0d",
+  },
+  legend: {
+    display: true,
+    position: "bottom",
+    labels: {
+      fontColor: "black",
     },
-    legend: {
-      display: true,
-      position: "right",
-      labels: {
-        fontColor: "red",
+  },
+  scales: {
+    yAxes: [
+      {
+        ticks: {
+          beginAtZero: true,
+        },
       },
-    },
+    ],
   },
 };
 
@@ -33,6 +42,16 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         dataSets: [action.payload],
+      };
+    case "ADD_OPTION_TITLE":
+      return {
+        ...state,
+        title: action.payload,
+      };
+    case "ADD_OPTION_LEGEND":
+      return {
+        ...state,
+        legend: action.payload,
       };
 
     default:

@@ -1,4 +1,4 @@
-import { Bar, Doughnut } from "react-chartjs-2";
+import { Bar, Doughnut, Radar } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
@@ -25,12 +25,23 @@ const Chart = () => {
       labels: data.data,
       datasets: data.dataSets,
     });
-    console.log(state);
+    console.log(data);
   }, []);
 
   return (
     <>
-      {data ? <Bar data={state} options={data.options} /> : <h1> puta nman</h1>}
+      {data ? (
+        <Bar
+          data={state}
+          options={{
+            title: data.title,
+            legend: data.legend,
+            scales: data.scales,
+          }}
+        />
+      ) : (
+        <h1> puta nman</h1>
+      )}
     </>
   );
 };
