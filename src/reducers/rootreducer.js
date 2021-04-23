@@ -1,3 +1,5 @@
+// global store = data,datasets,title,type,legend,scales
+
 const initialState = {
   data: [
     {
@@ -12,6 +14,7 @@ const initialState = {
     fontSize: 100,
     fontColor: "#0d0d0d",
   },
+  type: "line",
   legend: {
     display: true,
     position: "bottom",
@@ -52,6 +55,11 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         legend: action.payload,
+      };
+    case "BAR_TYPE":
+      return {
+        ...state,
+        type: action.payload,
       };
 
     default:

@@ -19,14 +19,17 @@ import {
 } from "@chakra-ui/react";
 import { addOptionTitleCreator } from "../actions/addOptionTitleCreator";
 import { addOptionLegendCreator } from "../actions/addOptionLegendCreator";
+import { barTypeAction } from "../actions/barTypeAction";
 
 const FontContainer = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  flex-wrap: wrap;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   background-color: #0d0d0d;
 `;
 const Hero = styled.div`
@@ -48,6 +51,7 @@ const Hero = styled.div`
 `;
 
 const Inputs = () => {
+  const [barType, setBarType] = useState("line");
   const [labelString, setLabel] = useState([]);
   const [datasets, setData] = useState([]);
   const [titleOption, setTitleOption] = useState({
@@ -68,6 +72,7 @@ const Inputs = () => {
   const pushDispatch = useDispatch();
   const addTitleDispatch = useDispatch();
   const addLegendDispatch = useDispatch();
+  const addBarType = useDispatch();
 
   const handleLabelChange = (e) => {
     setLabel(e.target.value);
@@ -131,6 +136,10 @@ const Inputs = () => {
     });
   };
 
+  const handleBarTypeChange = (e) => {
+    setBarType(e.target.value);
+  };
+
   const submit = (e) => {
     e.preventDefault();
 
@@ -140,6 +149,7 @@ const Inputs = () => {
     pushDispatch(pushDataActionCreator(datasets));
     addTitleDispatch(addOptionTitleCreator(titleOption));
     addLegendDispatch(addOptionLegendCreator(legendOption));
+    addBarType(barTypeAction(barType));
   };
 
   useEffect(() => {
@@ -170,7 +180,7 @@ const Inputs = () => {
             boxShadow='xl'
             mt='5'
             bg='gray.800'
-            p={50}
+            p='20'
           >
             <Box textAlign='center'>
               <Heading>Create a Chart</Heading>
@@ -288,16 +298,16 @@ const Inputs = () => {
                   name='display'
                 >
                   <option value='top' style={{ color: "black" }}>
-                    top
+                    Top
                   </option>
                   <option value='right' style={{ color: "black" }}>
-                    right
+                    Right
                   </option>
                   <option value='bottom' style={{ color: "black" }}>
-                    bottom
+                    Bottom
                   </option>
                   <option value='left' style={{ color: "black" }}>
-                    left
+                    Left
                   </option>
                 </Select>
                 <FormLabel>Label Font Color</FormLabel>
@@ -306,6 +316,37 @@ const Inputs = () => {
                   value={legendOption.labels.fontColor}
                   name='labelFontColor'
                 ></Input>
+
+                <Select
+                  value={barType}
+                  onChange={handleBarTypeChange}
+                  name='chartType'
+                >
+                  <option value='line' style={{ color: "black" }}>
+                    Line
+                  </option>
+                  <option value='bar' style={{ color: "black" }}>
+                    Bar
+                  </option>
+                  <option value='horizontalbar' style={{ color: "black" }}>
+                    Horizontal Bar
+                  </option>
+                  <option value='pie' style={{ color: "black" }}>
+                    Pie
+                  </option>
+                  <option value='bubble' style={{ color: "black" }}>
+                    Bubble
+                  </option>
+                  <option value='polar' style={{ color: "black" }}>
+                    Polar
+                  </option>
+                  <option value='radar' style={{ color: "black" }}>
+                    Radar
+                  </option>
+                  <option value='scatter' style={{ color: "black" }}>
+                    Scatter
+                  </option>
+                </Select>
                 {/* <Select placeholder='nice one pota' color='white'>
                   <option>Nice one boss</option>
                   <option>bwahaha</option>

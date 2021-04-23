@@ -17,3 +17,7 @@ then assign the dataSet array from the global state to a variable on your compon
   add the input boxes from the material UI
   add buttons to choose what type of Chart they want to create
   option to save the chart
+
+  April 23, 2021
+
+  identify chart type custom hook (switch statement that checks the chart type in the store and returns the Chart component)
