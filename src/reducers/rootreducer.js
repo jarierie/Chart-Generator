@@ -31,6 +31,7 @@ const initialState = {
       },
     ],
   },
+  charts: [],
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -60,6 +61,11 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         type: action.payload,
+      };
+    case "ADD_CHART":
+      return {
+        ...state,
+        charts: [...state.charts, action.payload],
       };
 
     default:

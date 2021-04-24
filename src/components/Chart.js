@@ -9,9 +9,11 @@ import {
   Radar,
   Scatter,
 } from "react-chartjs-2";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import PolarChart from "../pages/PolarChart";
+import { Button } from "@chakra-ui/button";
+import styled from "styled-components";
+import { addChartAction } from "../actions/addChartAction";
 
 const Chart = () => {
   const [state, setState] = useState({
@@ -31,6 +33,7 @@ const Chart = () => {
     labels: ["January", "February", "March", "April", "May"],
   };
   const data = useSelector((state) => state);
+  const chartDispatch = useDispatch();
 
   // **** We can get rid of this useEffect hook because we can just use the data we got from the redux store directly
 
@@ -42,11 +45,11 @@ const Chart = () => {
   //   console.log(data);
   // }, []);
 
-  const { title, legend, scales } = data;
+  const { title, legend, scales, type, datasets } = data;
 
   useEffect(() => {
-    console.log(data);
-  }, []);
+    console.log(data.charts);
+  }, [data]);
 
   const getChart = () => {
     switch (data.type) {
@@ -179,7 +182,40 @@ const Chart = () => {
     }
   };
 
-  return <>{data ? getChart() : <h1> puta nman</h1>}</>;
+  // Methods
+
+  const saveChart = (e) => {
+    e.preventDefault();
+    chartDispatch(
+      addChartAction({
+        data: data.data,
+        datasets: datasets,
+        title: title,
+        type: type,
+        legend: legend,
+        scales: scales,
+      })
+    );
+  };
+
+  // Styled
+
+  const Container = styled.div`
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  `;
+
+  return (
+    <Container>
+      {data ? getChart() : <h1> maglagay ka ng chart boss</h1>}{" "}
+      <Button onClick={saveChart} left='0'>
+        Save Chart
+      </Button>
+    </Container>
+  );
 };
 
 export default Chart;
