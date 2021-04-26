@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   Bar,
   Bubble,
@@ -9,26 +11,9 @@ import {
   Radar,
   Scatter,
 } from "react-chartjs-2";
-import { useDispatch, useSelector } from "react-redux";
-import { Button } from "@chakra-ui/button";
-import styled from "styled-components";
-import { addChartAction } from "../actions/addChartAction";
 
-const Chart = () => {
-  const data = useSelector((state) => state);
-  const chartDispatch = useDispatch();
-
-  // **** We can get rid of this useEffect hook because we can just use the data we got from the redux store directly
-
-  // useEffect(() => {
-  //   setState({
-  //     labels: data.data,
-  //     datasets: data.dataSets,
-  //   });
-  //   console.log(data);
-  // }, []);
-
-  const { title, legend, scales, type } = data;
+const ViewChart = ({ data }) => {
+  const { title, legend, scales, datasets } = data;
 
   const getChart = () => {
     switch (data.type) {
@@ -37,7 +22,7 @@ const Chart = () => {
           <Line
             data={{
               labels: data.data,
-              datasets: data.dataSets,
+              datasets: datasets,
             }}
             options={{
               title: title,
@@ -51,7 +36,7 @@ const Chart = () => {
           <Bar
             data={{
               labels: data.data,
-              datasets: data.dataSets,
+              datasets: datasets,
             }}
             options={{
               title: title,
@@ -65,7 +50,7 @@ const Chart = () => {
           <HorizontalBar
             data={{
               labels: data.data,
-              datasets: data.dataSets,
+              datasets: datasets,
             }}
             options={{
               title: title,
@@ -79,7 +64,7 @@ const Chart = () => {
           <Pie
             data={{
               labels: data.data,
-              datasets: data.dataSets,
+              datasets: datasets,
             }}
             options={{
               title: title,
@@ -93,7 +78,7 @@ const Chart = () => {
           <Bubble
             data={{
               labels: data.data,
-              datasets: data.dataSets,
+              datasets: datasets,
             }}
             options={{
               title: title,
@@ -107,7 +92,7 @@ const Chart = () => {
           <Polar
             data={{
               labels: data.data,
-              datasets: data.dataSets,
+              datasets: datasets,
             }}
             options={{
               title: title,
@@ -121,7 +106,7 @@ const Chart = () => {
           <Radar
             data={{
               labels: data.data,
-              datasets: data.dataSets,
+              datasets: datasets,
             }}
             options={{
               title: title,
@@ -135,7 +120,7 @@ const Chart = () => {
           <Scatter
             data={{
               labels: data.data,
-              datasets: data.dataSets,
+              datasets: datasets,
             }}
             options={{
               title: title,
@@ -149,7 +134,7 @@ const Chart = () => {
           <Doughnut
             data={{
               labels: data.data,
-              datasets: data.dataSets,
+              datasets: datasets,
             }}
             options={{
               title: title,
@@ -162,41 +147,7 @@ const Chart = () => {
         return;
     }
   };
-
-  // Methods
-
-  const saveChart = (e) => {
-    e.preventDefault();
-    chartDispatch(
-      addChartAction({
-        data: data.data,
-        datasets: data.dataSets,
-        title: title,
-        type: type,
-        legend: legend,
-        scales: scales,
-      })
-    );
-  };
-
-  // Styled
-
-  const Container = styled.div`
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  `;
-
-  return (
-    <Container>
-      {data ? getChart() : <h1> maglagay ka ng chart boss</h1>}{" "}
-      <Button onClick={saveChart} left='0'>
-        Save Chart
-      </Button>
-    </Container>
-  );
+  return <>{getChart()}</>;
 };
 
-export default Chart;
+export default ViewChart;

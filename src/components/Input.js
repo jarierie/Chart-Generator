@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addActionCreator } from "../actions/addActionCreator";
 import { Link } from "react-router-dom";
 import { pushDataActionCreator } from "../actions/pushDataActionCreator";
@@ -15,7 +15,6 @@ import {
   Input,
   Button,
   Select,
-  Checkbox,
 } from "@chakra-ui/react";
 import { addOptionTitleCreator } from "../actions/addOptionTitleCreator";
 import { addOptionLegendCreator } from "../actions/addOptionLegendCreator";
@@ -152,24 +151,22 @@ const Inputs = () => {
     addBarType(barTypeAction(barType));
   };
 
-  useEffect(() => {
-    console.log(legendOption);
-  }, [legendOption]);
-
   return (
     <>
       <FontContainer>
         <Hero>
           <iframe
+            title='asdasd'
             src='https://giphy.com/embed/NGp9QCXJcBPuU'
             width='480'
             height='270'
             frameBorder='0'
-            class='giphy-embed'
             allowFullScreen
           ></iframe>
           <p>
-            <a href='https://giphy.com/gifs/mrw-car-somebody-NGp9QCXJcBPuU'></a>
+            <a href='https://giphy.com/gifs/mrw-car-somebody-NGp9QCXJcBPuU'>
+              {" "}
+            </a>
           </p>
           <h1>Make me a damn chart!</h1>
         </Hero>
@@ -198,7 +195,6 @@ const Inputs = () => {
                     <Input
                       onChange={handleLabelChange}
                       value={labelString}
-                      name='labels'
                       mb='15'
                       width='100%'
                       type='text'
@@ -355,13 +351,7 @@ const Inputs = () => {
             </Box>
             <Box display='flex' flexDirection='column' alignItems='center'>
               <Link to='/chart'>
-                <Button
-                  border='none'
-                  width='100%'
-                  width='250px'
-                  bgColor='green.700'
-                  mt='5'
-                >
+                <Button border='none' width='250px' bgColor='green.700' mt='5'>
                   Save Chart
                 </Button>
               </Link>

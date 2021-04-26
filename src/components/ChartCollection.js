@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import Nav from "./Nav";
+import { Link } from "react-router-dom";
 
 const colors = ["#26001b", "#810034", "#ff005c", "#025955"];
 
@@ -44,7 +43,7 @@ const ChartCard = styled.div`
   flex-direction: column;
   padding: 10px 20px;
   border-radius: 5px;
-  margin-top: 10px;
+  margin: 10px 5px 10px 5px;
   :hover {
     transform: scale(1.05);
     transition: 0.5s;
@@ -64,9 +63,6 @@ const ChartCard = styled.div`
 
 const ChartCollection = () => {
   const data = useSelector((state) => state.charts);
-  useEffect(() => {
-    console.log(data);
-  }, []);
 
   return (
     <>
@@ -78,10 +74,12 @@ const ChartCollection = () => {
           {data.map((data) => {
             return (
               <>
-                <ChartCard props={Math.floor(Math.random() * 4)}>
-                  <h1>{data.title.text}</h1>
-                  <p>{`${data.type} Chart`}</p>
-                </ChartCard>
+                <Link to={`/chart/${data.title.text}`}>
+                  <ChartCard props={Math.floor(Math.random() * 4)}>
+                    <h1>{data.title.text}</h1>
+                    <p>{`${data.type} Chart`}</p>
+                  </ChartCard>
+                </Link>
               </>
             );
           })}
