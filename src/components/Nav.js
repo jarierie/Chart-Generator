@@ -31,11 +31,17 @@ const Nav = () => {
           </NavSplit>
         </Link>
         <NavSplit style={{ width: "500px" }}>
-          <Link to='makeChart' style={{ fontSize: "20px" }}>
+          <Link to='/makeChart' style={{ fontSize: "20px" }}>
             Make a Chart
           </Link>
           <Link to='/chartCollection' style={{ fontSize: "20px" }}>
             Collection
+          </Link>
+          <Link to='/viewMap' style={{ fontSize: "20px" }}>
+            View Map
+          </Link>
+          <Link to='/test' style={{ fontSize: "20px" }}>
+            Create Map
           </Link>
         </NavSplit>
       </NavContainer>

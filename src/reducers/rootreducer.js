@@ -32,6 +32,7 @@ const initialState = {
     ],
   },
   charts: [],
+  currentMap: [],
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -66,6 +67,11 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         charts: [...state.charts, action.payload],
+      };
+    case "ADD_MAP":
+      return {
+        ...state,
+        currentMap: [...state.currentMap, action.payload],
       };
 
     default:

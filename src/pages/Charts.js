@@ -5,7 +5,7 @@ import Nav from "../components/Nav";
 
 const Container = styled.div`
   width: 100%;
-  height: auto;
+  height: 200vh;
 `;
 
 const Charts = () => {

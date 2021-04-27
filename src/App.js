@@ -8,6 +8,8 @@ import Home from "./pages/Home";
 import MakeChart from "./pages/MakeChart";
 import Charts from "./pages/Charts";
 import SingleChart from "./pages/SingleChart";
+import ViewMap from "./components/ViewMap";
+import Test from "./components/Test";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
             <Route exact path='/chart' component={Chart}></Route>
             <Route exact path='/chartCollection' component={Charts}></Route>
             <Route exact path='/chart/:text' component={SingleChart}></Route>
+            <Route exact path='/viewMap' component={ViewMap}></Route>
+            <Route exact path='/test' component={Test}></Route>
           </Provider>
         </ChakraProvider>
       </Router>

@@ -14,19 +14,18 @@ import { Button } from "@chakra-ui/button";
 import styled from "styled-components";
 import { addChartAction } from "../actions/addChartAction";
 
+const Container = styled.div`
+  margin: auto;
+  width: 90%;
+  height: 100vh;
+  display: flex;
+
+  flex-direction: column;
+`;
+
 const Chart = () => {
   const data = useSelector((state) => state);
   const chartDispatch = useDispatch();
-
-  // **** We can get rid of this useEffect hook because we can just use the data we got from the redux store directly
-
-  // useEffect(() => {
-  //   setState({
-  //     labels: data.data,
-  //     datasets: data.dataSets,
-  //   });
-  //   console.log(data);
-  // }, []);
 
   const { title, legend, scales, type } = data;
 
@@ -180,14 +179,6 @@ const Chart = () => {
   };
 
   // Styled
-
-  const Container = styled.div`
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  `;
 
   return (
     <Container>

@@ -2,6 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Nav from "../components/Nav";
 import ViewChart from "../components/ViewChart";
+import styled from "styled-components";
+
+const Container = styled.div`
+  margin: auto;
+  width: 90%;
+  height: 100vh;
+  display: flex;
+  margin-top: 20px;
+
+  flex-direction: column;
+`;
 
 const SingleChart = ({ match }) => {
   const [data, setData] = useState(null);
@@ -17,8 +28,9 @@ const SingleChart = ({ match }) => {
   return (
     <>
       <Nav></Nav>
-
-      {data ? <ViewChart data={data}></ViewChart> : <h1> Ginegenerate pa</h1>}
+      <Container>
+        {data ? <ViewChart data={data}></ViewChart> : <h1> Ginegenerate pa</h1>}
+      </Container>
     </>
   );
 };
