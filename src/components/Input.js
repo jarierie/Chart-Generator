@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { addActionCreator } from "../actions/addActionCreator";
 import { Link } from "react-router-dom";
 import { pushDataActionCreator } from "../actions/pushDataActionCreator";
+import { GithubPicker } from "react-color";
 
 import {
   Flex,
@@ -19,6 +20,7 @@ import {
 import { addOptionTitleCreator } from "../actions/addOptionTitleCreator";
 import { addOptionLegendCreator } from "../actions/addOptionLegendCreator";
 import { barTypeAction } from "../actions/barTypeAction";
+import InputComponent from "./InputComponent";
 
 const FontContainer = styled.div`
   display: flex;
@@ -30,6 +32,14 @@ const FontContainer = styled.div`
   min-height: 100vh;
   height: auto;
   background-color: #0d0d0d;
+`;
+
+const AbsoluteContainer = styled.div`
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  margin-left: 50%;
+  z-index: 9999;
 `;
 const Hero = styled.div`
   display: flex;
@@ -50,6 +60,9 @@ const Hero = styled.div`
 `;
 
 const Inputs = () => {
+  // color
+  const [colorString, setColorString] = useState("#0d0d0d");
+  const [focus, setFocus] = useState(false);
   const [barType, setBarType] = useState("line");
   const [labelString, setLabel] = useState([]);
   const [datasets, setData] = useState([]);
@@ -151,6 +164,11 @@ const Inputs = () => {
     addBarType(barTypeAction(barType));
   };
 
+  const handleColorChange = (color) => {
+    setColorString(color.hex);
+    setFocus(false);
+  };
+
   return (
     <>
       <FontContainer>
@@ -202,6 +220,7 @@ const Inputs = () => {
                       autoComplete='off'
                     ></Input>
                   </FormControl>
+                  
                   <FormControl>
                     <FormLabel>Label</FormLabel>
                     <Input
@@ -214,8 +233,9 @@ const Inputs = () => {
                     ></Input>
                   </FormControl>
                   <FormControl>
-                    <FormLabel>Background Color</FormLabel>
+                    <FormLabel>{colorString}</FormLabel>
                     <Input
+                      onFocus={() => setFocus(true)}
                       onChange={handleDataSetChange}
                       mb='15'
                       width='100%'
@@ -223,6 +243,14 @@ const Inputs = () => {
                       name='backgroundColor'
                       autoComplete='off'
                     ></Input>
+                    {focus ? (
+                      <AbsoluteContainer>
+                        <GithubPicker
+                          color={colorString}
+                          onChangeComplete={handleColorChange}
+                        ></GithubPicker>
+                      </AbsoluteContainer>
+                    ) : null}
                   </FormControl>
                   <FormControl>
                     <FormLabel>Border Color</FormLabel>

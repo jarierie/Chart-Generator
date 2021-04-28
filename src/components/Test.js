@@ -12,31 +12,6 @@ const Container = styled.div`
 `;
 
 const Test = () => {
-  //   const [data, setData] = useState([
-  //     {
-  //       dallangayanOeste: {
-  //         name: "Dallangayan Oeste",
-  //         location: [120.3407, 16.63],
-  //         data: 40,
-  //       },
-  //       santiagoNorte: {
-  //         name: "Santiago Norte",
-  //         location: [120.3392, 16.6157],
-  //         data: 23,
-  //       },
-  //       santiagoSur: {
-  //         name: "Santiago Sur",
-  //         location: [120.3349, 16.6098],
-  //         data: 40,
-  //       },
-  //       tanqui: {
-  //         name: "Tanqui",
-  //         location: [120.3232, 16.6107],
-  //         data: 32,
-  //       },
-  //     },
-  //   ]);
-
   const data = [
     {
       name: "Dallangayan Oeste",
