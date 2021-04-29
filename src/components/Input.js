@@ -208,83 +208,43 @@ const Inputs = () => {
             >
               <Box my={4} textAlign='left'>
                 <form>
-                  <FormControl>
-                    <FormLabel>Labels</FormLabel>
-                    <Input
-                      onChange={handleLabelChange}
-                      value={labelString}
-                      mb='15'
-                      width='100%'
-                      type='text'
-                      name='labels'
-                      autoComplete='off'
-                    ></Input>
-                  </FormControl>
-                  
-                  <FormControl>
-                    <FormLabel>Label</FormLabel>
-                    <Input
-                      onChange={handleDataSetChange}
-                      mb='15'
-                      width='100%'
-                      type='text'
-                      name='label'
-                      autoComplete='off'
-                    ></Input>
-                  </FormControl>
-                  <FormControl>
-                    <FormLabel>{colorString}</FormLabel>
-                    <Input
-                      onFocus={() => setFocus(true)}
-                      onChange={handleDataSetChange}
-                      mb='15'
-                      width='100%'
-                      type='text'
-                      name='backgroundColor'
-                      autoComplete='off'
-                    ></Input>
-                    {focus ? (
-                      <AbsoluteContainer>
-                        <GithubPicker
-                          color={colorString}
-                          onChangeComplete={handleColorChange}
-                        ></GithubPicker>
-                      </AbsoluteContainer>
-                    ) : null}
-                  </FormControl>
-                  <FormControl>
-                    <FormLabel>Border Color</FormLabel>
-                    <Input
-                      onChange={handleDataSetChange}
-                      mb='15'
-                      width='100%'
-                      type='text'
-                      name='borderColor'
-                      autoComplete='off'
-                    ></Input>
-                  </FormControl>
-                  <FormControl>
-                    <FormLabel>Border Width</FormLabel>
-                    <Input
-                      onChange={handleDataSetChange}
-                      mb='15'
-                      width='100%'
-                      type='number'
-                      name='borderWidth'
-                      autoComplete='off'
-                    ></Input>
-                  </FormControl>
-                  <FormControl>
-                    <FormLabel>Data</FormLabel>
-                    <Input
-                      onChange={handleDataArrayChange}
-                      mb='15'
-                      width='100%'
-                      type='text'
-                      name='data'
-                      autoComplete='off'
-                    ></Input>
-                  </FormControl>
+                  <InputComponent
+                    formLabel='Labels'
+                    name='labels'
+                    onChange={handleLabelChange}
+                    value={labelString}
+                    type='text'
+                  ></InputComponent>
+                  <InputComponent
+                    formLabel='Label'
+                    name='label'
+                    onChange={handleDataSetChange}
+                    type='text'
+                  ></InputComponent>
+                  <InputComponent
+                    formLabel='Background Color'
+                    name='backgroundColor'
+                    onChange={handleDataSetChange}
+                    type='text'
+                  ></InputComponent>
+                  <InputComponent
+                    formLabel='Border Color'
+                    name='borderColor'
+                    onChange={handleDataSetChange}
+                    type='text'
+                  ></InputComponent>
+                  <InputComponent
+                    formLabel='Border Width'
+                    name='borderWidth'
+                    onChange={handleDataSetChange}
+                    type='number'
+                  ></InputComponent>
+                  <InputComponent
+                    formLabel='Data'
+                    name='data'
+                    onChange={handleDataArrayChange}
+                    type='text'
+                  ></InputComponent>
                 </form>
               </Box>
               {/* OPTIONS */}

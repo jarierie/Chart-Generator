@@ -6,7 +6,7 @@ const InputComponent = (props) => {
   return (
     <>
       <FormControl>
-        <FormLabel>{props.name}</FormLabel>
+        <FormLabel>{props.formLabel}</FormLabel>
         <Input
           name={props.name}
           value={props.value}

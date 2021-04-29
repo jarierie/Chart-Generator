@@ -25,6 +25,10 @@ const SingleChart = ({ match }) => {
     setData(chartArray);
   }, [initialData, match.params.text]);
 
+  useEffect(() => {
+    console.log(data);
+  }, data);
+
   return (
     <>
       <Nav></Nav>
