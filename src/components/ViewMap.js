@@ -14,36 +14,7 @@ const Container = styled.div`
 
 const ViewMap = () => {
   const getData = useSelector((state) => state.currentMap);
-  // const [data, setData] = useState([
-  //   {
-  //     name: "Dallangayan Oeste",
-  //     location: [120.3407, 16.63],
-  //     fire: 40,
-  //     earthquake: 324,
-  //     spaces: 200,
-  //     RACKS: 4,
-  //   },
-  //   {
-  //     name: "Dallangayan Este",
-  //     location: [120.3421, 16.6232],
-  //     fire: 400,
-  //   },
-  //   {
-  //     name: "Santiago Norte",
-  //     location: [120.3392, 16.6157],
-  //     fire: 23,
-  //   },
-  //   {
-  //     name: "Santiago Sur",
-  //     location: [120.3349, 16.6098],
-  //     fire: 40,
-  //   },
-  //   {
-  //     name: "Tanqui",
-  //     location: [120.3232, 16.6107],
-  //     fire: 32,
-  //   },
-  // ]);
+
   const [data, setData] = useState();
 
   useEffect(() => {

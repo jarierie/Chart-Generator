@@ -172,7 +172,7 @@ const Inputs = () => {
   return (
     <>
       <FontContainer>
-        <Hero>
+        {/* <Hero>
           <iframe
             title='asdasd'
             src='https://giphy.com/embed/NGp9QCXJcBPuU'
@@ -187,7 +187,7 @@ const Inputs = () => {
             </a>
           </p>
           <h1>Make me a damn chart!</h1>
-        </Hero>
+        </Hero> */}
         <Flex align='center' justifyContent='center'>
           <Box
             color='white'

@@ -27,7 +27,7 @@ const Nav = () => {
       <NavContainer>
         <Link to='/'>
           <NavSplit style={{ marginLeft: "100px", fontSize: "30px" }}>
-            <h1>GodDamn Chart</h1>
+            <h1>Chart jarie</h1>
           </NavSplit>
         </Link>
         <NavSplit style={{ width: "500px" }}>
